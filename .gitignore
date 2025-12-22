@@ -1,18 +1,41 @@
+# Built application files
+*.apk
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+build/
+release/
+
+# Gradle cache
 .gradle
-/local.properties
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Android Studio captures folder
+captures/
 
 # IDEA/Android Studio project files, because
 # the project can be imported from settings.gradle.kts
 *.iml
 .idea/*
 !.idea/copyright
-# Keep the code styles.
 !/.idea/codeStyles
 /.idea/codeStyles/*
 !/.idea/codeStyles/Project.xml
 !/.idea/codeStyles/codeStyleConfig.xml
+
+# External native build folder
+.externalNativeBuild/
+.cxx/
+
+# macOS
+.DS_Store
+
+# Android Profiling
+*.hprof
