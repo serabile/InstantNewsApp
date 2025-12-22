@@ -14,7 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.serabile.designsystem.theme.InstantNewsTheme
+import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
 
 /**
  * Card component for news article (image + title)
@@ -60,5 +63,29 @@ fun NewsCard(
                     .padding(bottom = 12.dp)
             )
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun NewsCardPreview() {
+    InstantNewsTheme {
+        NewsCard(
+            title = "Breaking News: Major Technology Breakthrough Announced Today",
+            imageUrl = null,
+            onClick = {}
+        )
+    }
+}
+
+@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
+@Composable
+private fun NewsCardDarkPreview() {
+    InstantNewsTheme {
+        NewsCard(
+            title = "Breaking News: Major Technology Breakthrough Announced Today",
+            imageUrl = null,
+            onClick = {}
+        )
     }
 }

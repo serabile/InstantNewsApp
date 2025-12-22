@@ -1,0 +1,5 @@
+<resources>
+    <!-- Design System Components -->
+    <string name="retry">Réessayer</string>
+    <string name="loading">Chargement…</string>
+</resources>

@@ -14,8 +14,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
+import com.serabile.designsystem.theme.InstantNewsTheme
 import coil.request.ImageRequest
 
 /**
@@ -55,7 +57,7 @@ fun NewsImage(
  * Placeholder for image when loading or error
  */
 @Composable
-private fun ImagePlaceholder(
+internal fun ImagePlaceholder(
     modifier: Modifier = Modifier,
     isLoading: Boolean = false
 ) {
@@ -77,5 +79,27 @@ private fun ImagePlaceholder(
                 tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
             )
         }
+    }
+}
+
+@Preview(showBackground = true, name = "Loading State")
+@Composable
+private fun ImagePlaceholderLoadingPreview() {
+    InstantNewsTheme {
+        ImagePlaceholder(
+            modifier = Modifier.size(200.dp),
+            isLoading = true
+        )
+    }
+}
+
+@Preview(showBackground = true, name = "Error State")
+@Composable
+private fun ImagePlaceholderErrorPreview() {
+    InstantNewsTheme {
+        ImagePlaceholder(
+            modifier = Modifier.size(200.dp),
+            isLoading = false
+        )
     }
 }

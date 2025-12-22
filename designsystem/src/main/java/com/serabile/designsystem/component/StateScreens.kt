@@ -19,8 +19,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.serabile.designsystem.R
+import com.serabile.designsystem.theme.InstantNewsTheme
 
 /**
  * Full-screen loading indicator
@@ -75,7 +79,7 @@ fun ErrorScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Button(onClick = onRetry) {
-            Text(text = "Réessayer")
+            Text(text = stringResource(R.string.retry))
         }
     }
 }
@@ -109,6 +113,37 @@ fun EmptyScreen(
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
+        )
+    }
+}
+
+// ==================== PREVIEWS ====================
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun LoadingScreenPreview() {
+    InstantNewsTheme {
+        LoadingScreen()
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun ErrorScreenPreview() {
+    InstantNewsTheme {
+        ErrorScreen(
+            message = "Une erreur est survenue. Veuillez vérifier votre connexion internet.",
+            onRetry = {}
+        )
+    }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun EmptyScreenPreview() {
+    InstantNewsTheme {
+        EmptyScreen(
+            message = "Aucune actualité disponible pour le moment."
         )
     }
 }
