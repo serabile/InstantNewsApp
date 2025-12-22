@@ -1,0 +1,14 @@
+<resources>
+    <!-- Top News Screen -->
+    <string name="top_news_title">Actualités</string>
+    <string name="refresh">Rafraîchir</string>
+    
+    <!-- News Detail Screen -->
+    <string name="back">Retour</string>
+    <string name="open_in_browser">Ouvrir dans le navigateur</string>
+    <string name="read_full_article">Lire l\'article complet</string>
+    
+    <!-- Error Messages -->
+    <string name="error_occurred">Une erreur est survenue</string>
+    <string name="no_news_available">Aucune actualité disponible</string>
+</resources>
