@@ -19,11 +19,12 @@ spotless {
             .editorConfigOverride(
                 mapOf(
                     "ktlint_standard_no-wildcard-imports" to "disabled",
-                    "ktlint_standard_filename" to "disabled"
-                )
+                    "ktlint_standard_filename" to "disabled",
+                    "ktlint_function_naming_ignore_when_annotated_with" to "Composable",
+                ),
             )
     }
-    
+
     kotlinGradle {
         target("*.gradle.kts")
         ktlint("1.5.0")
