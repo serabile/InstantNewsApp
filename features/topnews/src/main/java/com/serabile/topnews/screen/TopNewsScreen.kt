@@ -96,7 +96,7 @@ fun TopNewsScreen(
 }
 
 @Composable
-private fun TopNewsContent(
+fun TopNewsContent(
     uiState: TopNewsUiState,
     onArticleClick: (Article) -> Unit,
     onRetry: () -> Unit,
@@ -126,7 +126,7 @@ private fun TopNewsContent(
 }
 
 @Composable
-private fun ArticlesList(
+fun ArticlesList(
     articles: List<Article>,
     onArticleClick: (Article) -> Unit,
     modifier: Modifier = Modifier,

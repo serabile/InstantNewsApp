@@ -19,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,7 +39,9 @@ fun LoadingScreen(
         contentAlignment = Alignment.Center,
     ) {
         CircularProgressIndicator(
-            modifier = Modifier.size(48.dp),
+            modifier = Modifier
+                .size(48.dp)
+                .testTag("loading_indicator"),
             color = MaterialTheme.colorScheme.primary,
         )
     }
@@ -78,7 +81,10 @@ fun ErrorScreen(
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        Button(onClick = onRetry) {
+        Button(
+            onClick = onRetry,
+            modifier = Modifier.testTag("retry_button")
+        ) {
             Text(text = stringResource(R.string.retry))
         }
     }

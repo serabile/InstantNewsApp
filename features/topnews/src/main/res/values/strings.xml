@@ -7,6 +7,7 @@
     <string name="back">Back</string>
     <string name="open_in_browser">Open in browser</string>
     <string name="read_full_article">Read full article</string>
+    <string name="article_image">Article image</string>
     
     <!-- Error Messages -->
     <string name="error_occurred">An error occurred</string>

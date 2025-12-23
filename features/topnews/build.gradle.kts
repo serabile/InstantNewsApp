@@ -21,6 +21,10 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = true
@@ -63,10 +67,13 @@ dependencies {
     implementation(libs.timber)
 
     debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
     testImplementation(libs.junit)
     testImplementation(libs.mockk)
     testImplementation(libs.turbine)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
 }

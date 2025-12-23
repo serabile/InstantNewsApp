@@ -23,6 +23,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -90,10 +91,11 @@ private fun NewsDetailContent(
         // Article Image
         NewsImage(
             imageUrl = article.imageUrl,
-            contentDescription = article.title,
+            contentDescription = stringResource(R.string.article_image),
             modifier = Modifier
                 .fillMaxWidth()
-                .height(250.dp),
+                .height(250.dp)
+                .testTag("article_image"),
         )
 
         Column(
@@ -133,7 +135,9 @@ private fun NewsDetailContent(
             // Read more button
             Button(
                 onClick = onOpenInBrowser,
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("read_article_button"),
             ) {
                 Icon(
                     imageVector = Icons.Filled.OpenInBrowser,
