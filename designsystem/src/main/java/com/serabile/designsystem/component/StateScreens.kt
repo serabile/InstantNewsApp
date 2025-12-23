@@ -62,7 +62,7 @@ fun ErrorScreen(
     ) {
         Icon(
             imageVector = Icons.Filled.Error,
-            contentDescription = null,
+            contentDescription = stringResource(R.string.error),
             modifier = Modifier.size(64.dp),
             tint = MaterialTheme.colorScheme.error
         )
@@ -101,7 +101,7 @@ fun EmptyScreen(
     ) {
         Icon(
             imageVector = Icons.Filled.FolderOpen,
-            contentDescription = null,
+            contentDescription = stringResource(R.string.empty),
             modifier = Modifier.size(64.dp),
             tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
         )

@@ -2,4 +2,6 @@
     <!-- Design System Components -->
     <string name="retry">Retry</string>
     <string name="loading">Loading…</string>
+    <string name="error">error</string>
+    <string name="empty">empty</string>
 </resources>

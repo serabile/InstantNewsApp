@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import com.serabile.designsystem.component.NewsImage
 import com.serabile.designsystem.theme.InstantNewsTheme
 import com.serabile.domain.model.Article
+import com.serabile.topnews.R
 
 /**
  * News detail screen displaying full article information
@@ -57,7 +58,7 @@ fun NewsDetailScreen(
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(com.serabile.topnews.R.string.back)
+                            contentDescription = stringResource(R.string.back)
                         )
                     }
                 }
@@ -136,10 +137,10 @@ private fun NewsDetailContent(
             ) {
                 Icon(
                     imageVector = Icons.Filled.OpenInBrowser,
-                    contentDescription = null,
+                    contentDescription = stringResource(R.string.read_full_article),
                     modifier = Modifier.padding(end = 8.dp)
                 )
-                Text(stringResource(com.serabile.topnews.R.string.read_full_article))
+                Text(stringResource(R.string.read_full_article))
             }
         }
     }

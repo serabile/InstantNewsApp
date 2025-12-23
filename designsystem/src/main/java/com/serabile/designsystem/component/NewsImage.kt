@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
@@ -74,7 +75,7 @@ internal fun ImagePlaceholder(
         } else {
             Icon(
                 imageVector = Icons.Filled.BrokenImage,
-                contentDescription = null,
+                contentDescription = stringResource(com.serabile.designsystem.R.string.error),
                 modifier = Modifier.size(48.dp),
                 tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
             )
