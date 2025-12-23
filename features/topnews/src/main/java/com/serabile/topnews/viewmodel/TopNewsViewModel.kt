@@ -3,6 +3,7 @@ package com.serabile.topnews.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.serabile.domain.usecase.GetTopHeadlinesUseCase
+import com.serabile.topnews.intent.TopNewsIntent
 import com.serabile.topnews.state.TopNewsUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,13 +21,27 @@ class TopNewsViewModel @Inject constructor(
     val uiState: StateFlow<TopNewsUiState> = _uiState.asStateFlow()
 
     init {
-        loadNews()
+        processIntent(TopNewsIntent.LoadOrRefresh)
+    }
+
+    /**
+     * User intents to update the UI state
+     */
+    fun processIntent(intent: TopNewsIntent) {
+        when (intent) {
+            is TopNewsIntent.LoadOrRefresh -> loadNews()
+            is TopNewsIntent.RetryLoad -> loadNews()
+            is TopNewsIntent.ArticleClicked -> {
+                // Navigation is handled in the UI layer
+                // This intent is here for a potential future analytics
+            }
+        }
     }
 
     /**
      * Loads top headlines based on device locale (us, fr, ...)
      */
-    fun loadNews() {
+    private fun loadNews() {
         viewModelScope.launch {
             _uiState.value = TopNewsUiState.Loading
 

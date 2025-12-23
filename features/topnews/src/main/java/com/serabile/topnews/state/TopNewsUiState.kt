@@ -2,15 +2,15 @@ package com.serabile.topnews.state
 
 import com.serabile.domain.model.Article
 
-sealed interface TopNewsUiState {
+sealed class TopNewsUiState {
 
-    data object Loading : TopNewsUiState
+    data object Loading : TopNewsUiState()
 
     data class Success(
         val articles: List<Article>
-    ) : TopNewsUiState
+    ) : TopNewsUiState()
 
     data class Error(
         val message: String
-    ) : TopNewsUiState
+    ) : TopNewsUiState()
 }

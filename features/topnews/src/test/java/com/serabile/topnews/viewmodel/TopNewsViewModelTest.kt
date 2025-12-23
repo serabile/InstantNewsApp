@@ -3,6 +3,7 @@ package com.serabile.topnews.viewmodel
 import app.cash.turbine.test
 import com.serabile.domain.model.Article
 import com.serabile.domain.usecase.GetTopHeadlinesUseCase
+import com.serabile.topnews.intent.TopNewsIntent
 import com.serabile.topnews.state.TopNewsUiState
 import io.mockk.coEvery
 import io.mockk.mockk
@@ -59,8 +60,8 @@ class TopNewsViewModelTest {
                 imageUrl = "https://test.com/image.jpg",
                 url = "https://test.com",
                 publishedAt = "2024-01-01T10:00:00Z",
-                sourceName = "Test Source"
-            )
+                sourceName = "Test Source",
+            ),
         )
         coEvery { getTopHeadlinesUseCase() } returns Result.success(mockArticles)
 
@@ -71,7 +72,7 @@ class TopNewsViewModelTest {
             // Skip Loading state
             awaitItem()
             advanceUntilIdle()
-            
+
             // Then
             val state = awaitItem()
             assertTrue(state is TopNewsUiState.Success)
@@ -93,7 +94,7 @@ class TopNewsViewModelTest {
             // Skip Loading state
             awaitItem()
             advanceUntilIdle()
-            
+
             // Then
             val state = awaitItem()
             assertTrue(state is TopNewsUiState.Error)
@@ -114,10 +115,10 @@ class TopNewsViewModelTest {
                 imageUrl = null,
                 url = "https://test.com",
                 publishedAt = "2024-01-01T10:00:00Z",
-                sourceName = "Test Source"
-            )
+                sourceName = "Test Source",
+            ),
         )
-        
+
         // First call fails, second succeeds
         coEvery { getTopHeadlinesUseCase() } returns Result.failure(RuntimeException(errorMessage)) andThen Result.success(mockArticles)
 
@@ -127,22 +128,22 @@ class TopNewsViewModelTest {
             // Skip Loading state
             awaitItem()
             advanceUntilIdle()
-            
+
             // Error state
             assertTrue(awaitItem() is TopNewsUiState.Error)
-            
-            // Reload
-            viewModel.loadNews()
-            
+
+            // Reload using intent
+            viewModel.processIntent(TopNewsIntent.RetryLoad)
+
             // Loading state after reload
             assertTrue(awaitItem() is TopNewsUiState.Loading)
             advanceUntilIdle()
-            
+
             // Success state
             val state = awaitItem()
             assertTrue(state is TopNewsUiState.Success)
             assertEquals(mockArticles, (state as TopNewsUiState.Success).articles)
-            
+
             cancelAndIgnoreRemainingEvents()
         }
     }

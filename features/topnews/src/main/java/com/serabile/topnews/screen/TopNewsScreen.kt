@@ -29,6 +29,7 @@ import com.serabile.designsystem.component.LoadingScreen
 import com.serabile.designsystem.component.NewsCard
 import com.serabile.designsystem.theme.InstantNewsTheme
 import com.serabile.domain.model.Article
+import com.serabile.topnews.intent.TopNewsIntent
 import com.serabile.topnews.state.TopNewsUiState
 import com.serabile.topnews.viewmodel.TopNewsViewModel
 
@@ -51,7 +52,7 @@ fun TopNewsScreen(
                 title = { Text(stringResource(com.serabile.topnews.R.string.top_news_title)) },
                 scrollBehavior = scrollBehavior,
                 actions = {
-                    IconButton(onClick = { viewModel.loadNews() }) {
+                    IconButton(onClick = { viewModel.processIntent(TopNewsIntent.LoadOrRefresh) }) {
                         Icon(
                             imageVector = Icons.Filled.Refresh,
                             contentDescription = stringResource(com.serabile.topnews.R.string.refresh)
@@ -64,7 +65,7 @@ fun TopNewsScreen(
         TopNewsContent(
             uiState = uiState,
             onArticleClick = onArticleClick,
-            onRetry = { viewModel.loadNews() },
+            onRetry = { viewModel.processIntent(TopNewsIntent.RetryLoad) },
             modifier = Modifier.padding(paddingValues)
         )
     }

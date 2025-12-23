@@ -1,7 +1,6 @@
 package com.serabile.topnews.screen
 
 import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -28,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import com.serabile.designsystem.component.NewsImage
 import com.serabile.designsystem.theme.InstantNewsTheme
 import com.serabile.domain.model.Article
@@ -68,7 +68,7 @@ fun NewsDetailScreen(
         NewsDetailContent(
             article = article,
             onOpenInBrowser = {
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(article.url))
+                val intent = Intent(Intent.ACTION_VIEW, article.url.toUri())
                 context.startActivity(intent)
             },
             modifier = Modifier.padding(paddingValues)
