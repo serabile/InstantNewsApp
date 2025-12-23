@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,6 +29,7 @@ class TopNewsViewModel @Inject constructor(
      * User intents to update the UI state
      */
     fun processIntent(intent: TopNewsIntent) {
+        Timber.d("Processing intent: ${intent::class.simpleName}")
         when (intent) {
             is TopNewsIntent.LoadOrRefresh -> loadNews()
             is TopNewsIntent.RetryLoad -> loadNews()
@@ -43,10 +45,12 @@ class TopNewsViewModel @Inject constructor(
      */
     private fun loadNews() {
         viewModelScope.launch {
+            Timber.d("Loading top headlines...")
             _uiState.value = TopNewsUiState.Loading
 
             getTopHeadlinesUseCase()
                 .onSuccess { articles ->
+                    Timber.d("Successfully loaded ${articles.size} articles")
                     _uiState.value = if (articles.isEmpty()) {
                         TopNewsUiState.Error("No news available")
                     } else {
@@ -54,6 +58,7 @@ class TopNewsViewModel @Inject constructor(
                     }
                 }
                 .onFailure { exception ->
+                    Timber.e(exception, "Failed to load top headlines")
                     _uiState.value = TopNewsUiState.Error(
                         exception.message ?: "An error occurred"
                     )
