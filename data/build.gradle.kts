@@ -31,7 +31,6 @@ android {
 
         // Expose API key to BuildConfig
         buildConfigField("String", "NEWS_API_KEY", "\"${localProperties.getProperty("NEWS_API_KEY", "")}\"")
-        buildConfigField("String", "NEWS_API_BASE_URL", "\"https://newsapi.org/v2/\"")
     }
 
     buildTypes {

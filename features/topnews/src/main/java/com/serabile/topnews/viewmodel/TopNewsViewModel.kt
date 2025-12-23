@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TopNewsViewModel @Inject constructor(
-    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase
+    private val getTopHeadlinesUseCase: GetTopHeadlinesUseCase,
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow<TopNewsUiState>(TopNewsUiState.Loading)
@@ -60,7 +60,7 @@ class TopNewsViewModel @Inject constructor(
                 .onFailure { exception ->
                     Timber.e(exception, "Failed to load top headlines")
                     _uiState.value = TopNewsUiState.Error(
-                        exception.message ?: "An error occurred"
+                        exception.message ?: "An error occurred",
                     )
                 }
         }

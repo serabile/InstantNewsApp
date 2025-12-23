@@ -11,29 +11,27 @@ import javax.inject.Inject
 
 class NewsRepositoryImpl @Inject constructor(
     private val newsApiService: NewsApiService,
-    private val localeProvider: LocaleProvider
+    private val localeProvider: LocaleProvider,
 ) : NewsRepository {
 
-    override suspend fun getTopHeadlines(): Result<List<Article>> {
-        return try {
-            val country = localeProvider.getCountryCode()
-            Timber.d("Fetching top headlines for country: $country")
-            
-            val response = newsApiService.getTopHeadlines(
-                country = country,
-                apiKey = BuildConfig.NEWS_API_KEY
-            )
+    override suspend fun getTopHeadlines(): Result<List<Article>> = try {
+        val country = localeProvider.getCountryCode()
+        Timber.d("Fetching top headlines for country: $country")
 
-            if (response.status == "ok") {
-                Timber.d("API response OK - ${response.articles.size} articles received")
-                Result.success(response.articles.toDomain())
-            } else {
-                Timber.w("API response KO, status: ${response.status}")
-                Result.failure(Exception("API returned status: ${response.status}"))
-            }
-        } catch (e: Exception) {
-            Timber.e(e, "Error fetching top headlines")
-            Result.failure(e)
+        val response = newsApiService.getTopHeadlines(
+            country = country,
+            apiKey = BuildConfig.NEWS_API_KEY,
+        )
+
+        if (response.status == "ok") {
+            Timber.d("API response OK - ${response.articles.size} articles received")
+            Result.success(response.articles.toDomain())
+        } else {
+            Timber.w("API response KO, status: ${response.status}")
+            Result.failure(Exception("API returned status: ${response.status}"))
         }
+    } catch (e: Exception) {
+        Timber.e(e, "Error fetching top headlines")
+        Result.failure(e)
     }
 }

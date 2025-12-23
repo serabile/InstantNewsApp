@@ -45,8 +45,8 @@ class GetTopHeadlinesUseCaseTest {
                 imageUrl = "https://test.com/image.jpg",
                 url = "https://test.com",
                 publishedAt = "2024-01-01T10:00:00Z",
-                sourceName = "Test Source"
-            )
+                sourceName = "Test Source",
+            ),
         )
         coEvery { repository.getTopHeadlines() } returns Result.success(mockArticles)
 

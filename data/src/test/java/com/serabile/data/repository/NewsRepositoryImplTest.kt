@@ -37,12 +37,12 @@ class NewsRepositoryImplTest {
             url = "https://test.com",
             urlToImage = "https://test.com/image.jpg",
             publishedAt = "2024-01-01T10:00:00Z",
-            content = "Test Content"
+            content = "Test Content",
         )
         val mockResponse = NewsResponseData(
             status = "ok",
             totalResults = 1,
-            articles = listOf(mockArticleData)
+            articles = listOf(mockArticleData),
         )
 
         coEvery { localeProvider.getCountryCode() } returns "us"
@@ -67,7 +67,7 @@ class NewsRepositoryImplTest {
         coEvery {
             newsApiService.getTopHeadlines(
                 any(),
-                any()
+                any(),
             )
         } throws RuntimeException("Network error")
 

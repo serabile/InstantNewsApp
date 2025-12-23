@@ -34,7 +34,7 @@ private val LightColorScheme = lightColorScheme(
     onSurface = OnSurfaceLight,
     surfaceVariant = SurfaceVariantLight,
     onSurfaceVariant = OnSurfaceVariantLight,
-    outline = OutlineLight
+    outline = OutlineLight,
 )
 
 private val DarkColorScheme = darkColorScheme(
@@ -60,13 +60,13 @@ private val DarkColorScheme = darkColorScheme(
     onSurface = OnSurfaceDark,
     surfaceVariant = SurfaceVariantDark,
     onSurfaceVariant = OnSurfaceVariantDark,
-    outline = OutlineDark
+    outline = OutlineDark,
 )
 
 @Composable
 fun InstantNewsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
 
@@ -82,6 +82,6 @@ fun InstantNewsTheme(
     MaterialTheme(
         colorScheme = colorScheme,
         typography = Typography,
-        content = content
+        content = content,
     )
 }

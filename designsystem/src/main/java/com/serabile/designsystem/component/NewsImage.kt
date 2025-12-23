@@ -18,8 +18,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
-import com.serabile.designsystem.theme.InstantNewsTheme
 import coil.request.ImageRequest
+import com.serabile.designsystem.theme.InstantNewsTheme
 
 /**
  * Image component with loading and error states
@@ -29,7 +29,7 @@ fun NewsImage(
     imageUrl: String?,
     contentDescription: String?,
     modifier: Modifier = Modifier,
-    contentScale: ContentScale = ContentScale.Crop
+    contentScale: ContentScale = ContentScale.Crop,
 ) {
     SubcomposeAsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
@@ -42,15 +42,15 @@ fun NewsImage(
         loading = {
             ImagePlaceholder(
                 modifier = Modifier.fillMaxSize(),
-                isLoading = true
+                isLoading = true,
             )
         },
         error = {
             ImagePlaceholder(
                 modifier = Modifier.fillMaxSize(),
-                isLoading = false
+                isLoading = false,
             )
-        }
+        },
     )
 }
 
@@ -60,24 +60,24 @@ fun NewsImage(
 @Composable
 internal fun ImagePlaceholder(
     modifier: Modifier = Modifier,
-    isLoading: Boolean = false
+    isLoading: Boolean = false,
 ) {
     Box(
         modifier = modifier.background(MaterialTheme.colorScheme.surfaceVariant),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         if (isLoading) {
             CircularProgressIndicator(
                 modifier = Modifier.size(24.dp),
                 color = MaterialTheme.colorScheme.primary,
-                strokeWidth = 2.dp
+                strokeWidth = 2.dp,
             )
         } else {
             Icon(
                 imageVector = Icons.Filled.BrokenImage,
                 contentDescription = stringResource(com.serabile.designsystem.R.string.error),
                 modifier = Modifier.size(48.dp),
-                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+                tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
             )
         }
     }
@@ -89,7 +89,7 @@ private fun ImagePlaceholderLoadingPreview() {
     InstantNewsTheme {
         ImagePlaceholder(
             modifier = Modifier.size(200.dp),
-            isLoading = true
+            isLoading = true,
         )
     }
 }
@@ -100,7 +100,7 @@ private fun ImagePlaceholderErrorPreview() {
     InstantNewsTheme {
         ImagePlaceholder(
             modifier = Modifier.size(200.dp),
-            isLoading = false
+            isLoading = false,
         )
     }
 }

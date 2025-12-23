@@ -14,10 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.serabile.designsystem.theme.InstantNewsTheme
-import androidx.compose.ui.tooling.preview.AndroidUiModes.UI_MODE_NIGHT_YES
 
 /**
  * Card component for news article (image + title)
@@ -27,7 +27,7 @@ fun NewsCard(
     title: String,
     imageUrl: String?,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card(
         modifier = modifier
@@ -35,9 +35,9 @@ fun NewsCard(
             .clickable(onClick = onClick),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = MaterialTheme.colorScheme.surface,
         ),
-        shape = MaterialTheme.shapes.medium
+        shape = MaterialTheme.shapes.medium,
     ) {
         Column {
             NewsImage(
@@ -46,7 +46,7 @@ fun NewsCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(180.dp)
-                    .clip(MaterialTheme.shapes.medium)
+                    .clip(MaterialTheme.shapes.medium),
             )
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -60,7 +60,7 @@ fun NewsCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 12.dp)
-                    .padding(bottom = 12.dp)
+                    .padding(bottom = 12.dp),
             )
         }
     }
@@ -73,7 +73,7 @@ private fun NewsCardPreview() {
         NewsCard(
             title = "Breaking News: Major Technology Breakthrough Announced Today",
             imageUrl = null,
-            onClick = {}
+            onClick = {},
         )
     }
 }
@@ -85,7 +85,7 @@ private fun NewsCardDarkPreview() {
         NewsCard(
             title = "Breaking News: Major Technology Breakthrough Announced Today",
             imageUrl = null,
-            onClick = {}
+            onClick = {},
         )
     }
 }

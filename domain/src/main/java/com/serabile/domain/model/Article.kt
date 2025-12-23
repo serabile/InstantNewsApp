@@ -7,5 +7,5 @@ data class Article(
     val imageUrl: String?,
     val url: String,
     val publishedAt: String,
-    val sourceName: String
+    val sourceName: String,
 )

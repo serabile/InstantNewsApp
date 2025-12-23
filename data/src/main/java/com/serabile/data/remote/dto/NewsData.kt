@@ -3,13 +3,12 @@ package com.serabile.data.remote.dto
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-
 @Serializable
 data class SourceData(
     @SerialName("id")
     val id: String?,
     @SerialName("name")
-    val name: String
+    val name: String,
 )
 
 @Serializable
@@ -29,7 +28,7 @@ data class ArticleData(
     @SerialName("publishedAt")
     val publishedAt: String,
     @SerialName("content")
-    val content: String?
+    val content: String?,
 )
 
 @Serializable
@@ -39,5 +38,5 @@ data class NewsResponseData(
     @SerialName("totalResults")
     val totalResults: Int,
     @SerialName("articles")
-    val articles: List<ArticleData>
+    val articles: List<ArticleData>,
 )

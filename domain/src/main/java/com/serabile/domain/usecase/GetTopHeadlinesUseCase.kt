@@ -5,9 +5,7 @@ import com.serabile.domain.repository.NewsRepository
 import javax.inject.Inject
 
 class GetTopHeadlinesUseCase @Inject constructor(
-    private val newsRepository: NewsRepository
+    private val newsRepository: NewsRepository,
 ) {
-    suspend operator fun invoke(): Result<List<Article>> {
-        return newsRepository.getTopHeadlines()
-    }
+    suspend operator fun invoke(): Result<List<Article>> = newsRepository.getTopHeadlines()
 }

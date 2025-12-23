@@ -48,7 +48,7 @@ import com.serabile.topnews.viewmodel.TopNewsViewModel
 @Composable
 fun TopNewsScreen(
     viewModel: TopNewsViewModel = hiltViewModel(),
-    onArticleClick: (Article) -> Unit
+    onArticleClick: (Article) -> Unit,
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -59,17 +59,17 @@ fun TopNewsScreen(
             TopAppBar(
                 title = {
                     Row(
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Image(
                             painter = painterResource(id = com.serabile.designsystem.R.drawable.ic_launcher),
                             contentDescription = null,
-                            modifier = Modifier.size(72.dp)
+                            modifier = Modifier.size(72.dp),
                         )
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = stringResource(com.serabile.topnews.R.string.top_news_title),
-                            style = MaterialTheme.typography.titleLarge
+                            style = MaterialTheme.typography.titleLarge,
                         )
                     }
                 },
@@ -79,18 +79,18 @@ fun TopNewsScreen(
                     IconButton(onClick = { viewModel.processIntent(TopNewsIntent.LoadOrRefresh) }) {
                         Icon(
                             imageVector = Icons.Filled.Refresh,
-                            contentDescription = stringResource(com.serabile.topnews.R.string.refresh)
+                            contentDescription = stringResource(com.serabile.topnews.R.string.refresh),
                         )
                     }
-                }
+                },
             )
-        }
+        },
     ) { paddingValues ->
         TopNewsContent(
             uiState = uiState,
             onArticleClick = onArticleClick,
             onRetry = { viewModel.processIntent(TopNewsIntent.RetryLoad) },
-            modifier = Modifier.padding(paddingValues)
+            modifier = Modifier.padding(paddingValues),
         )
     }
 }
@@ -100,7 +100,7 @@ private fun TopNewsContent(
     uiState: TopNewsUiState,
     onArticleClick: (Article) -> Unit,
     onRetry: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     when (uiState) {
         is TopNewsUiState.Loading -> {
@@ -111,7 +111,7 @@ private fun TopNewsContent(
             ArticlesList(
                 articles = uiState.articles,
                 onArticleClick = onArticleClick,
-                modifier = modifier
+                modifier = modifier,
             )
         }
 
@@ -119,7 +119,7 @@ private fun TopNewsContent(
             ErrorScreen(
                 message = uiState.message,
                 onRetry = onRetry,
-                modifier = modifier
+                modifier = modifier,
             )
         }
     }
@@ -129,21 +129,21 @@ private fun TopNewsContent(
 private fun ArticlesList(
     articles: List<Article>,
     onArticleClick: (Article) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier.fillMaxSize(),
         contentPadding = PaddingValues(16.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         items(
             items = articles,
-            key = { it.id }
+            key = { it.id },
         ) { article ->
             NewsCard(
                 title = article.title,
                 imageUrl = article.imageUrl,
-                onClick = { onArticleClick(article) }
+                onClick = { onArticleClick(article) },
             )
         }
     }
@@ -159,7 +159,7 @@ private val previewArticles = listOf(
         imageUrl = null,
         url = "https://example.com/article1",
         publishedAt = "2025-12-19T10:00:00Z",
-        sourceName = "Tech News"
+        sourceName = "Tech News",
     ),
     Article(
         id = "2",
@@ -168,7 +168,7 @@ private val previewArticles = listOf(
         imageUrl = null,
         url = "https://example.com/article2",
         publishedAt = "2025-12-19T09:30:00Z",
-        sourceName = "Sports Daily"
+        sourceName = "Sports Daily",
     ),
     Article(
         id = "3",
@@ -177,8 +177,8 @@ private val previewArticles = listOf(
         imageUrl = null,
         url = "https://example.com/article3",
         publishedAt = "2025-12-19T08:15:00Z",
-        sourceName = "Weather Channel"
-    )
+        sourceName = "Weather Channel",
+    ),
 )
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -188,7 +188,7 @@ private fun TopNewsContentLoadingPreview() {
         TopNewsContent(
             uiState = TopNewsUiState.Loading,
             onArticleClick = {},
-            onRetry = {}
+            onRetry = {},
         )
     }
 }
@@ -200,7 +200,7 @@ private fun TopNewsContentSuccessPreview() {
         TopNewsContent(
             uiState = TopNewsUiState.Success(previewArticles),
             onArticleClick = {},
-            onRetry = {}
+            onRetry = {},
         )
     }
 }
@@ -212,7 +212,7 @@ private fun TopNewsContentErrorPreview() {
         TopNewsContent(
             uiState = TopNewsUiState.Error("Une erreur est survenue. Vérifiez votre connexion internet."),
             onArticleClick = {},
-            onRetry = {}
+            onRetry = {},
         )
     }
 }

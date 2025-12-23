@@ -7,10 +7,10 @@ sealed class TopNewsUiState {
     data object Loading : TopNewsUiState()
 
     data class Success(
-        val articles: List<Article>
+        val articles: List<Article>,
     ) : TopNewsUiState()
 
     data class Error(
-        val message: String
+        val message: String,
     ) : TopNewsUiState()
 }

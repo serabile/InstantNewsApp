@@ -40,7 +40,7 @@ import com.serabile.topnews.R
 @Composable
 fun NewsDetailScreen(
     article: Article,
-    onBackClick: () -> Unit
+    onBackClick: () -> Unit,
 ) {
     val context = LocalContext.current
 
@@ -51,19 +51,19 @@ fun NewsDetailScreen(
                     Text(
                         text = article.sourceName,
                         maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
+                        overflow = TextOverflow.Ellipsis,
                     )
                 },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.back)
+                            contentDescription = stringResource(R.string.back),
                         )
                     }
-                }
+                },
             )
-        }
+        },
     ) { paddingValues ->
         NewsDetailContent(
             article = article,
@@ -71,7 +71,7 @@ fun NewsDetailScreen(
                 val intent = Intent(Intent.ACTION_VIEW, article.url.toUri())
                 context.startActivity(intent)
             },
-            modifier = Modifier.padding(paddingValues)
+            modifier = Modifier.padding(paddingValues),
         )
     }
 }
@@ -80,12 +80,12 @@ fun NewsDetailScreen(
 private fun NewsDetailContent(
     article: Article,
     onOpenInBrowser: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
-            .verticalScroll(rememberScrollState())
+            .verticalScroll(rememberScrollState()),
     ) {
         // Article Image
         NewsImage(
@@ -93,19 +93,19 @@ private fun NewsDetailContent(
             contentDescription = article.title,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(250.dp)
+                .height(250.dp),
         )
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
+                .padding(16.dp),
         ) {
             // Title
             Text(
                 text = article.title,
                 style = MaterialTheme.typography.headlineSmall,
-                color = MaterialTheme.colorScheme.onSurface
+                color = MaterialTheme.colorScheme.onSurface,
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -114,7 +114,7 @@ private fun NewsDetailContent(
             Text(
                 text = "${article.sourceName} • ${formatDate(article.publishedAt)}",
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -124,7 +124,7 @@ private fun NewsDetailContent(
                 Text(
                     text = description,
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
                 )
 
                 Spacer(modifier = Modifier.height(24.dp))
@@ -133,12 +133,12 @@ private fun NewsDetailContent(
             // Read more button
             Button(
                 onClick = onOpenInBrowser,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 Icon(
                     imageVector = Icons.Filled.OpenInBrowser,
                     contentDescription = stringResource(R.string.read_full_article),
-                    modifier = Modifier.padding(end = 8.dp)
+                    modifier = Modifier.padding(end = 8.dp),
                 )
                 Text(stringResource(R.string.read_full_article))
             }
@@ -149,13 +149,11 @@ private fun NewsDetailContent(
 /**
  * Formats the ISO date string to a more readable format
  */
-private fun formatDate(isoDate: String): String {
-    return try {
-        // Simple formatting, just extract date part (ex: 2025-12-21T21:22:27Z)
-        isoDate.substringBefore("T")
-    } catch (e: Exception) {
-        isoDate
-    }
+private fun formatDate(isoDate: String): String = try {
+    // Simple formatting, just extract date part (ex: 2025-12-21T21:22:27Z)
+    isoDate.substringBefore("T")
+} catch (e: Exception) {
+    isoDate
 }
 
 // ==================== PREVIEWS ====================
@@ -167,7 +165,7 @@ private val previewArticle = Article(
     imageUrl = null,
     url = "https://example.com/article",
     publishedAt = "2025-12-19T10:00:00Z",
-    sourceName = "Heat.com"
+    sourceName = "Heat.com",
 )
 
 @Preview(showBackground = true, showSystemUi = true)
@@ -176,7 +174,7 @@ private fun NewsDetailContentPreview() {
     InstantNewsTheme {
         NewsDetailContent(
             article = previewArticle,
-            onOpenInBrowser = {}
+            onOpenInBrowser = {},
         )
     }
 }

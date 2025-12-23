@@ -31,15 +31,15 @@ import com.serabile.designsystem.theme.InstantNewsTheme
  */
 @Composable
 fun LoadingScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Box(
         modifier = modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         CircularProgressIndicator(
             modifier = Modifier.size(48.dp),
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primary,
         )
     }
 }
@@ -51,20 +51,20 @@ fun LoadingScreen(
 fun ErrorScreen(
     message: String,
     onRetry: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Icon(
             imageVector = Icons.Filled.Error,
             contentDescription = stringResource(R.string.error),
             modifier = Modifier.size(64.dp),
-            tint = MaterialTheme.colorScheme.error
+            tint = MaterialTheme.colorScheme.error,
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -73,7 +73,7 @@ fun ErrorScreen(
             text = message,
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurface,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
 
         Spacer(modifier = Modifier.height(24.dp))
@@ -90,20 +90,20 @@ fun ErrorScreen(
 @Composable
 fun EmptyScreen(
     message: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier
             .fillMaxSize()
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Icon(
             imageVector = Icons.Filled.FolderOpen,
             contentDescription = stringResource(R.string.empty),
             modifier = Modifier.size(64.dp),
-            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
+            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -112,7 +112,7 @@ fun EmptyScreen(
             text = message,
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
     }
 }
@@ -133,7 +133,7 @@ private fun ErrorScreenPreview() {
     InstantNewsTheme {
         ErrorScreen(
             message = "Une erreur est survenue. Veuillez vérifier votre connexion internet.",
-            onRetry = {}
+            onRetry = {},
         )
     }
 }
@@ -143,7 +143,7 @@ private fun ErrorScreenPreview() {
 private fun EmptyScreenPreview() {
     InstantNewsTheme {
         EmptyScreen(
-            message = "Aucune actualité disponible pour le moment."
+            message = "Aucune actualité disponible pour le moment.",
         )
     }
 }

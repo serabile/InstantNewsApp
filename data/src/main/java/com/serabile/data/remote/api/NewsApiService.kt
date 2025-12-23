@@ -19,7 +19,7 @@ interface NewsApiService {
     @GET("top-headlines")
     suspend fun getTopHeadlines(
         @Query("country") country: String,
-        @Query("apiKey") apiKey: String
+        @Query("apiKey") apiKey: String,
     ): NewsResponseData
 
     companion object {

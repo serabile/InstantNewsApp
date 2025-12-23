@@ -17,7 +17,6 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -44,19 +43,15 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(NewsApiService.BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-            .build()
-    }
+    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit = Retrofit.Builder()
+        .baseUrl(NewsApiService.BASE_URL)
+        .client(okHttpClient)
+        .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+        .build()
 
     @Provides
     @Singleton
-    fun provideNewsApiService(retrofit: Retrofit): NewsApiService {
-        return retrofit.create(NewsApiService::class.java)
-    }
+    fun provideNewsApiService(retrofit: Retrofit): NewsApiService = retrofit.create(NewsApiService::class.java)
 }
 
 @Module
@@ -66,6 +61,6 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindNewsRepository(
-        newsRepositoryImpl: NewsRepositoryImpl
+        newsRepositoryImpl: NewsRepositoryImpl,
     ): NewsRepository
 }
