@@ -83,7 +83,7 @@ fun ErrorScreen(
 
         Button(
             onClick = onRetry,
-            modifier = Modifier.testTag("retry_button")
+            modifier = Modifier.testTag("retry_button"),
         ) {
             Text(text = stringResource(R.string.retry))
         }

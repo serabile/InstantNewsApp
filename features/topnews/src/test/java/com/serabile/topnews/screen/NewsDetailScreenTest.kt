@@ -142,7 +142,7 @@ class NewsDetailScreenTest {
     fun newsDetailScreen_longTitle_displaysProperly() {
         val articleWithLongTitle = mockArticle.copy(
             title = "This is a very long title that might wrap to multiple lines " +
-                "and should be handled gracefully by the composable layout"
+                "and should be handled gracefully by the composable layout",
         )
 
         composeTestRule.setContent {
